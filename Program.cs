@@ -56,10 +56,37 @@
                     overflow.Add(file);
                 }
             }
+
+            WriteToFile("no_file.txt", noFile);
+            WriteToFile("bad_data.txt", badData);
+            WriteToFile("overflow.txt", overflow);
+
+            try
+            {
+                double average = (double)validProducts.Sum() / validProducts.Count;
+                Console.WriteLine($"Average of valid products: {average}");
+            }
+            catch
+            {
+                throw new Exception("No valid products found.");
+            }
         }
         catch (Exception ex)
         {
             Console.WriteLine("Error: Unable to create or write to output files. " + ex.Message);
+        }
+    }
+    static void WriteToFile(string filename, List<string> data)
+    {
+        string directoryPath = @"C:\Users\roma1\source\repos\lab3oop\lab3oop";
+        string fullPath = Path.Combine(directoryPath, filename);
+        try
+        {
+            File.WriteAllLines(fullPath, data);
+        }
+        catch
+        {
+            throw new IOException($"Unable to create or write to file {filename}");
         }
     }
     static int ParseInt(string line)
