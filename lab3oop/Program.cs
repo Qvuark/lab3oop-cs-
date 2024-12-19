@@ -56,11 +56,9 @@
                     overflow.Add(file);
                 }
             }
-
             WriteToFile("no_file.txt", noFile);
             WriteToFile("bad_data.txt", badData);
             WriteToFile("overflow.txt", overflow);
-
             try
             {
                 double average = (double)validProducts.Sum() / validProducts.Count;
